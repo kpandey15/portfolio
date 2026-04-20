@@ -742,25 +742,72 @@ section .title::after {
 .contact .contact-content .right .text { font-style: normal; color: #111; margin-bottom: 8px; }
 .contact .contact-content cite { display: block; margin-top: 8px; font-style: italic; color: #666; }
 
-/* Footer social icons aligned and small */
+/* Footer fixes: allow auto height and center socials below creator */
 footer {
   background: #111;
   color: #fff;
-  position: relative;
-  height: 48px;
+  padding: 14px 0 !important;
+  height: auto !important;
+  position: relative !important;
 }
-footer span .social {
-  position: absolute;
-  left: 14px;
-  bottom: 8px;
+.footer-center { text-align: center; }
+.footer-center .creator { display: block; font-weight: 600; margin-bottom: 8px; }
+
+/* center social links below the creator text and ensure visibility */
+.footer-center .social-footer {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 12px;
+  align-items: center;
+  margin-top: 6px;
+  position: relative !important;
+  left: auto !important;
+  bottom: auto !important;
 }
-footer span .social a { width: 36px; height: 36px; }
-footer span { display: block; }
-/* center the created-by text */
-footer span:last-child {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 12px;
-  margin: 0;
+
+/* style icons and plain link (LeetCode) */
+.footer-center .social-footer a {
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 10px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.03);
+  text-decoration: none;
+  font-weight: 600;
+}
+.footer-center .social-footer a .fab { font-size: 18px; }
+.footer-center .social-footer .social-plain { font-weight: 600; color: #fff; }
+
+/* Footer icon styling: square buttons, centered, hover effects */
+.footer-center .social-footer { gap: 14px; }
+.footer-center .social-footer a.social-icon {
+  width: 46px;
+  height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.04);
+  transition: background 0.18s ease, transform 0.12s ease;
+}
+.footer-center .social-footer a.social-icon:hover { background: rgba(181,0,252,0.14); transform: translateY(-3px); }
+.footer-center .social-footer a.social-icon i { font-size: 18px; color: #fff; }
+
+/* LeetCode button styling */
+.footer-center .social-footer a.social-icon.leetcode { padding: 6px 8px; }
+.footer-center .social-footer a.social-icon.leetcode svg rect { fill: #FF8F1C; }
+.footer-center .social-footer a.social-icon.leetcode:hover { background: rgba(255,143,28,0.16); transform: translateY(-3px); }
+
+/* Creator text styling */
+.footer-center .creator { font-size: 18px; }
+
+/* Ensure footer spacing is tidy */
+footer { padding: 18px 0; }
+.footer-center .social-footer a.social-icon .leetcode-icon {
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1;
 }
