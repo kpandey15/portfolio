@@ -28,12 +28,12 @@ html {
 
 /* all similar content styling codes */
 section {
-	padding: 100px 0;
+	padding: 40px 0;
 }
 .max-width {
-	max-width: 1300px;
-	padding: 0 80px;
-	margin: auto;
+	max-width: 1100px;
+	padding: 0 18px;
+	margin: 0 auto;
 }
 .about,
 .interests,
@@ -258,6 +258,13 @@ section .title::after {
 	background: none;
 }
 
+/* About section: single-column layout after removing image */
+.about .about-content { display:block; }
+.about .about-content .right { width: 100%; }
+.about .about-content .right .text { font-size: 22px; }
+.about .about-content .right h3 { margin-top: 8px; }
+.about .about-content .right ul { margin-top: 10px; }
+
 /* interests section styling */
 .interests,
 .projects {
@@ -306,271 +313,257 @@ section .title::after {
 }
 
 /* skills section styling */
-
+.skills {
+  background: #111;
+  color: #fff;
+}
+.skills .title::before {
+  background: #fff;
+}
 .skills .title::after {
-	content: "My Learnings";
+  background: #111;
+  content: "My Learnings";
+  color: rgb(181, 0, 252);
 }
-.skills .skills-content .column {
-	width: calc(50% - 30px);
+.skills .skills-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(120px, 1fr));
+  gap: 16px;
+  justify-content: center;
+  align-items: stretch;
+  margin-top: 18px;
 }
-.skills .skills-content .left .text {
-	font-size: 20px;
-	font-weight: 600;
-	margin-bottom: 10px;
+@media (max-width: 1200px) {
+  .skills .skills-grid { grid-template-columns: repeat(5, minmax(120px, 1fr)); }
 }
-.skills .skills-content .left p {
-	text-align: justify;
+@media (max-width: 900px) {
+  .skills .skills-grid { grid-template-columns: repeat(4, minmax(140px, 1fr)); }
 }
-.linkedIn {
-	display: inline-block;
-	background: rgb(181, 0, 252);
-	color: #fff;
-	font-size: 18px;
-	font-weight: 500;
-	padding: 8px 16px;
-	margin-top: 20px;
-	border-radius: 6px;
-	border: 2px solid rgb(181, 0, 252);
-	transition: all 0.3s ease;
+@media (max-width: 700px) {
+  .skills .skills-grid { grid-template-columns: repeat(2, 1fr); }
 }
-.skills .skills-content .left a:hover {
-	color: rgb(181, 0, 252);
-	background: none;
-}
-.skills .skills-content .right .bars {
-	margin-bottom: 15px;
-}
-.skills .skills-content .right .info {
-	display: flex;
-	margin-bottom: 5px;
-	align-items: center;
-	justify-content: space-between;
-}
-.skills .skills-content .right span {
-	font-weight: 500;
-	font-size: 18px;
-}
-.skills .skills-content .right .line {
-	height: 5px;
-	width: 100%;
-	background: lightgrey;
-	position: relative;
-}
-.skills .skills-content .right .line::before {
-	content: "";
-	position: absolute;
-	height: 100%;
-	left: 0;
-	top: 0;
-	background: rgb(181, 0, 252);
-}
-.skills-content .right .html::before {
-	width: 80%;
-}
-.skills-content .right .css::before {
-	width: 60%;
-}
-.skills-content .right .js::before {
-	width: 70%;
-}
-.skills-content .right .nodejs::before {
-	width: 65%;
-}
-.skills-content .right .mysql::before {
-	width: 70%;
+@media (max-width: 480px) {
+  .skills .skills-grid { grid-template-columns: 1fr; }
 }
 
-/* projects section styling */
-.projects .title::after {
-	content: "My work";
+/* Experience section: use Interests-style card appearance but keep section background white */
+.experience {
+  background: #fff;
+  color: #111;
+}
+.experience .title::after {
+  background: #fff;
+}
+.experience .experience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+  justify-content: center;
+  align-items: start;
+}
+.experience .experience-grid .exp-item {
+  background: #222;
+  text-align: center;
+  border-radius: 6px;
+  padding: 20px 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #fff;
+  min-height: 140px;
+}
+.experience .experience-grid .exp-item:hover {
+  background: rgb(181, 0, 252);
+  transform: translateY(-6px);
+}
+.experience .experience-grid .exp-item .box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  height: 100%;
+  justify-content: flex-start;
+  align-items: center;
+}
+/* Constrain the body text for readability and center the block */
+.experience .experience-grid .exp-item .box > ul,
+.experience .experience-grid .exp-item .box > p {
+  max-width: 240px; /* restrict line length */
+  margin: 0 auto;
+  text-align: left; /* keep bullets readable */
+  color: #e6e6e6;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+/* Heading and date styling */
+.experience .experience-grid .exp-item h3 {
+  text-align: center;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0;
+}
+.experience .experience-grid .exp-item .muted {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #d0d0d0;
+  margin-bottom: 6px;
+}
+/* Make long content scroll within card to keep layout consistent */
+.experience .experience-grid .exp-item .content-scroll {
+  overflow-y: auto;
+  max-height: 220px;
+  padding-right: 6px;
+}
+/* small scrollbar styling for the internal scroll if needed */
+.experience .experience-grid .exp-item .content-scroll::-webkit-scrollbar { width: 8px; }
+.experience .experience-grid .exp-item .content-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 6px; }
+
+/* Ensure hover color still readable */
+.experience .experience-grid .exp-item:hover ul,
+.experience .experience-grid .exp-item:hover p {
+  color: rgba(255,255,255,0.95);
+}
+
+/* Force equal heights for Experience & Education cards and enable internal scrolling for long content */
+.experience .exp-item,
+.education .edu-item {
+  height: 340px; /* fixed, equal height for all cards */
+  min-height: 340px;
+  max-height: 340px;
+}
+.experience .exp-item .box,
+.education .edu-item { height: 100%; }
+
+/* Make list content scrollable inside the card to avoid stretching */
+.experience .exp-item .box > ul,
+.education .edu-item .box > ul {
+  max-height: calc(100% - 70px); /* leave room for title/date */
+  overflow-y: auto;
+  padding-right: 8px;
+}
+.experience .exp-item .box > ul::-webkit-scrollbar,
+.education .edu-item .box > ul::-webkit-scrollbar {
+  width: 8px;
+}
+.experience .exp-item .box > ul::-webkit-scrollbar-thumb,
+.education .edu-item .box > ul::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.12);
+  border-radius: 6px;
+}
+
+/* Slightly reduce font-size inside cards for compactness */
+.experience .exp-item .box > ul li,
+.education .edu-item .box > ul li { font-size: 0.94rem; line-height: 1.5; }
+
+/* Projects - restored working styles */
+.projects {
+  background: #111;
+  color: #fff;
+}
+.projects .carousel {
+  display: grid;
+  grid-template-columns: repeat(4, 260px); /* four fixed columns on large screens */
+  gap: 28px;
+  justify-content: center; /* center the grid */
+  align-items: start;
+  grid-auto-rows: 1fr; /* force each row to equal height */
 }
 .projects .carousel .card {
-	width: calc(33%);
-	display: inline-table;
-	height: 380px;
-	background: #222;
-	text-align: center;
-	border-radius: 6px;
-	padding: 20px 25px;
-	cursor: pointer;
-	transition: all 0.3s ease;
-}
-.projects .carousel .card:hover {
-	background: rgb(181, 0, 252);
+  width: 260px;
+  background: #222;
+  color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+  transition: transform 0.18s ease, background 0.18s ease;
+  display: flex;
+  align-items: stretch; /* let children stretch to equal height */
+  justify-content: center;
+  height: 100%; /* fill the grid row height */
 }
 .projects .carousel .card .box {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  width: 100%;
+  height: 100%; /* ensure box fills card height */
+  justify-content: space-between; /* push actions to bottom */
 }
-.projects .carousel .card:hover .box {
-	transform: scale(1.05);
-}
-.projects .carousel .card .text {
-	font-size: 25px;
-	font-weight: 500;
-	margin: 10px 0 7px 0;
-}
-.projects .carousel .card img {
-	height: 150px;
-	width: 150px;
-	object-fit: cover;
-	border-radius: 50%;
-	border: 5px solid rgb(181, 0, 252);
-	transition: all 0.3s ease;
-}
-.projects .carousel .card:hover img {
-	border-color: #fff;
+.projects .carousel .card:hover {
+  transform: translateY(-6px);
 }
 
-/* contact section styling */
-.contact .title::after {
-	content: "Get in Touch";
+/* Education: mirror Experience styling (centered grid, dark project-style cards, equal heights, purple hover) */
+.education {
+  background: #fff; /* section background remains white */
+  color: #111;
 }
-.contact .contact-content .column {
-	width: calc(50% - 30px);
+.education .title::after { background: #fff; }
+.education .education-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+  justify-content: center;
+  align-items: start;
+  grid-auto-rows: 1fr; /* equal heights */
+  max-width: 1100px;
+  margin: 0 auto;
 }
-.contact .contact-content .text {
-	font-size: 20px;
-	font-weight: 600;
-	margin-bottom: 10px;
+.education .edu-item {
+  background: #222; /* dark card */
+  color: #fff;
+  border-radius: 8px;
+  padding: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 100%;
+  min-height: 150px;
+  text-align: left;
 }
-.contact .contact-content .left p {
-	text-align: justify;
+.education .edu-item h3 { color: #fff; margin-bottom: 6px; }
+.education .edu-item .muted { color: #d0d0d0; }
+.education .edu-item p, .education .edu-item li { color: #e6e6e6; }
+.education .edu-item:hover {
+  background: rgb(181,0,252);
+  transform: translateY(-6px);
 }
-.contact .contact-content .left .icons {
-	margin: 10px 0;
-}
-.contact .contact-content .row {
-	display: flex;
-	height: 65px;
-	align-items: center;
-}
-.contact .contact-content .row .info {
-	margin-left: 30px;
-}
-.contact .contact-content .row i {
-	font-size: 25px;
-	color: rgb(181, 0, 252);
-}
-.contact .contact-content .info .head {
-	font-weight: 500;
-}
-.contact .contact-content .info .sub-title {
-	color: #333;
-}
-.contact .right form .fields {
-	display: flex;
-}
-.contact .right form .field,
-.contact .right form .fields .field {
-	height: 45px;
-	width: 100%;
-	margin-bottom: 15px;
-}
-.contact .right form .textarea {
-	height: 80px;
-	width: 100%;
-}
-.contact .right form .name {
-	margin-right: 10px;
-}
-.contact .right form .email {
-	margin-left: 10px;
-}
-.contact .right form .field input,
-.contact .right form .textarea textarea {
-	height: 100%;
-	width: 100%;
-	border: 1px solid lightgrey;
-	border-radius: 6px;
-	outline: none;
-	padding: 0 15px;
-	font-size: 17px;
-	font-family: 'Poppins', sans-serif;
-	transition: all 0.3s ease;
-}
-.contact .right form .field input:focus,
-.contact .right form .textarea textarea:focus {
-	border-color: #b3b3b3;
-}
-.contact .right form .textarea textarea {
-	padding-top: 10px;
-	resize: none;
-}
-.contact .right form .button {
-	height: 47px;
-	width: 170px;
-}
-.contact .right form .button button {
-	width: 100%;
-	height: 100%;
-	border: 2px solid rgb(181, 0, 252);
-	background: rgb(181, 0, 252);
-	color: #fff;
-	outline: none;
-	font-size: 20px;
-	font-weight: 500;
-	border-radius: 6px;
-	cursor: pointer;
-	transition: all 0.3s ease;
-}
-.contact .right form .button button:hover {
-	color: rgb(181, 0, 252);
-	background: none;
+.education .edu-item:hover h3,
+.education .edu-item:hover .muted,
+.education .edu-item:hover p,
+.education .edu-item:hover li {
+  color: #fff;
 }
 
-/* footer section styling */
-footer {
-	background: #111;
-	padding: 15px 23px;
-	color: #fff;
-	text-align: center;
+/* responsive fallbacks for Projects */
+@media (max-width: 1280px) {
+  .projects .carousel { grid-template-columns: repeat(3, 1fr); }
+  .projects .carousel .card { width: 100%; max-width: 320px; }
 }
-footer span a {
-	color: rgb(181, 0, 252);
-	text-decoration: none;
+@media (max-width: 960px) {
+  .projects .carousel { grid-template-columns: repeat(2, 1fr); }
+  .projects .carousel .card { max-width: 360px; }
 }
-footer span a:hover {
-	text-decoration: none;
-}
-footer span .social a {
-	display: inline-block;
-	width: 46px;
-	height: 46px;
-	text-align: center;
-	padding-top: 0.3cm;
-	background: rgb(181, 0, 252);
-	color: #fff;
-	text-decoration: none;
-	border-radius: 50%;
-	transition: 0.5s;
-}
-footer span .social a .fa {
-	line-height: 46px;
+@media (max-width: 690px) {
+  .projects .carousel { grid-template-columns: 1fr; gap: 18px; }
+  .projects .carousel .card { width: 100%; max-width: none; min-height: 180px; }
 }
 
-footer span .social a:nth-child(1):hover {
-	color: #26a4f2;
-	box-shadow: 0 0 15px #1da1f2;
-	text-shadow: 0 0 15px #1da1f2;
+/* responsive fallbacks for education */
+@media (max-width: 1200px) {
+  .education .education-content { grid-template-columns: repeat(3, 1fr); }
 }
-footer span .social a:nth-child(2):hover {
-	color: #e23670;
-	box-shadow: 0 0 15px #e1306c;
-	text-shadow: 0 0 15px #e1306c;
+@media (max-width: 900px) {
+  .education .education-content { grid-template-columns: repeat(2, 1fr); }
 }
-footer span .social a:nth-child(3):hover {
-	color: #2a6cbb;
-	box-shadow: 0 0 15px #2867b2;
-	text-shadow: 0 0 15px #2867b2;
-}
-footer span .social a:nth-child(4):hover {
-	color: #fff;
-	box-shadow: 0 0 15px #fff;
-	text-shadow: 0 0 15px #fff;
+@media (max-width: 600px) {
+  .education .education-content { grid-template-columns: 1fr; }
 }
 
 /* responsive media query start */
@@ -580,13 +573,17 @@ footer span .social a:nth-child(4):hover {
 	}
 }
 
+@media (max-width: 1200px) {
+  .experience .experience-grid, .education .education-content {
+    grid-template-columns: repeat(3, 300px);
+  }
+}
 @media (max-width: 1104px) {
 	.about .about-content .left img {
 		height: 350px;
 		width: 350px;
 	}
 }
-
 @media (max-width: 991px) {
 	.max-width {
 		padding: 0 50px;
@@ -660,7 +657,12 @@ footer span .social a:nth-child(4):hover {
 		margin-bottom: 20px;
 	}
 }
-
+@media (max-width: 900px) {
+  .experience .experience-grid, .education .education-content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .exp-item, .edu-item { width: 100%; max-width: 560px; }
+}
 @media (max-width: 690px) {
 	.max-width {
 		padding: 0 23px;
@@ -681,7 +683,9 @@ footer span .social a:nth-child(4):hover {
 		width: 100%;
 	}
 }
-
+@media (max-width: 600px) {
+  .experience .experience-grid, .education .education-content { grid-template-columns: 1fr; }
+}
 @media (max-width: 500px) {
 	.home .home-content .text-2 {
 		font-size: 50px;
@@ -708,4 +712,55 @@ footer span .social a:nth-child(4):hover {
 		font-size: 23px;
 		line-height: 38px;
 	}
+}
+
+/* Improved Contact section UI */
+.contact {
+  background: #fff;
+  color: #111;
+}
+.contact .max-width {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.contact .title { text-align: center; }
+.contact .contact-content {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  justify-content: center;
+  margin-top: 20px;
+}
+.contact .contact-content .column.left {
+  max-width: 420px;
+}
+.contact .contact-content .row { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 10px; }
+.contact .contact-content .row i { font-size: 20px; color: rgb(181, 0, 252); margin-top: 4px; }
+.contact .contact-content .info .head { font-weight: 600; color: #111; }
+.contact .contact-content .info .sub-title { color: #333; }
+.contact .contact-content .column.right { max-width: 420px; }
+.contact .contact-content .right .text { font-style: normal; color: #111; margin-bottom: 8px; }
+.contact .contact-content cite { display: block; margin-top: 8px; font-style: italic; color: #666; }
+
+/* Footer social icons aligned and small */
+footer {
+  background: #111;
+  color: #fff;
+  position: relative;
+  height: 48px;
+}
+footer span .social {
+  position: absolute;
+  left: 14px;
+  bottom: 8px;
+}
+footer span .social a { width: 36px; height: 36px; }
+footer span { display: block; }
+/* center the created-by text */
+footer span:last-child {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 12px;
+  margin: 0;
 }
