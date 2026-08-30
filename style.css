@@ -1,3 +1,4 @@
+
 /* Color Palette & Base Variables */
 :root {
   --bg-primary: #0f111a;
@@ -232,9 +233,11 @@ header {
 }
 
 /* Projects Grid */
+/* Projects Grid - Updated for perfect centering */
 .projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 30px;
 }
 
@@ -242,6 +245,18 @@ header {
   display: flex;
   flex-direction: column;
   text-align: center;
+  /* Ensures 3 cards per row on desktop, wrapping gracefully on smaller screens */
+  flex: 1 1 calc(33.333% - 30px);
+  min-width: 300px;
+  max-width: 380px; /* Prevents cards from stretching too wide */
+}
+
+/* Ensure the button stays perfectly at the bottom even if text length varies */
+.project-card p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 25px;
+  flex-grow: 1;
 }
 
 .project-icon {
@@ -293,39 +308,117 @@ footer {
   .hero h1 { font-size: 2.5rem; }
   .hero h2 { font-size: 1.5rem; }
 }
-/* --- GitHub Calendar Purple Theme Overrides --- */
+/* --- ULTIMATE GitHub Calendar Purple Theme Overrides --- */
+
 .calendar {
+  /* Override the library's internal CSS variables */
+  --color-calendar-graph-day-bg: #1a1d2d !important;
+  --color-calendar-graph-day-L1-bg: rgba(179, 136, 255, 0.3) !important;
+  --color-calendar-graph-day-L2-bg: rgba(179, 136, 255, 0.6) !important;
+  --color-calendar-graph-day-L3-bg: rgba(179, 136, 255, 0.8) !important;
+  --color-calendar-graph-day-L4-bg: #b388ff !important;
+
   border: none !important;
+  background: transparent !important;
   color: var(--text-main) !important;
-  font-family: 'Poppins', sans-serif !important;
-  min-height: 200px;
 }
 
-.calendar .contrib-number {
+/* Brute-force the SVG rectangles just in case the variables fail */
+.calendar svg rect[data-level="0"] { fill: #1a1d2d !important; rx: 3; ry: 3; }
+.calendar svg rect[data-level="1"] { fill: rgba(179, 136, 255, 0.3) !important; rx: 3; ry: 3; }
+.calendar svg rect[data-level="2"] { fill: rgba(179, 136, 255, 0.6) !important; rx: 3; ry: 3; }
+.calendar svg rect[data-level="3"] { fill: rgba(179, 136, 255, 0.8) !important; rx: 3; ry: 3; }
+.calendar svg rect[data-level="4"] { fill: #b388ff !important; rx: 3; ry: 3; }
+
+/* Hide the ugly blue 'Skip to contributions' link */
+.calendar a {
+  color: var(--text-main) !important;
+  text-decoration: none !important;
+}
+.calendar a:hover {
   color: var(--accent-purple) !important;
+}
+.calendar .sr-only,
+.calendar a[href*="skip"] {
+  display: none !important;
+}
+
+/* Clean up the stats area at the bottom (Longest streak, etc.) */
+.calendar .contrib-column {
+  border-left: 1px solid rgba(179, 136, 255, 0.2) !important;
+  border-top: 1px solid rgba(179, 136, 255, 0.2) !important;
+  padding: 15px 0 !important;
+}
+
+.calendar .contrib-column:first-child {
+  border-left: none !important;
 }
 
 .calendar .text-muted {
   color: var(--text-muted) !important;
+  font-size: 0.85rem !important;
 }
 
-/* Hide the "Learn how we count contributions" link for a cleaner card */
-.calendar .float-left.text-gray {
+/* Make the stat numbers pop in purple */
+.calendar .contrib-number {
+  color: var(--accent-purple) !important;
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+  display: block;
+  margin: 5px 0;
+}
+/* Hide the broken text stats area at the bottom */
+.calendar .contrib-footer,
+.calendar .flex-column.flex-md-row,
+.calendar .contrib-column {
   display: none !important;
 }
 
-/* Override default green blocks to neon purple based on activity intensity */
-.calendar .ContributionCalendar-day[data-level="0"],
-.calendar rect.ContributionCalendar-day[data-level="0"] { fill: #1a1d2d !important; }
+/* --- Footer Quote Section --- */
+.quote-box {
+  padding: 40px 20px;
+  position: relative;
+}
 
-.calendar .ContributionCalendar-day[data-level="1"],
-.calendar rect.ContributionCalendar-day[data-level="1"] { fill: rgba(179, 136, 255, 0.3) !important; }
+.quote-text {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-main);
+  letter-spacing: 0.5px;
+  line-height: 1.6;
+  font-style: italic;
+  text-transform: uppercase;
+}
 
-.calendar .ContributionCalendar-day[data-level="2"],
-.calendar rect.ContributionCalendar-day[data-level="2"] { fill: rgba(179, 136, 255, 0.6) !important; }
+.quote-author {
+  margin-top: 15px;
+  color: var(--accent-purple);
+  font-weight: 500;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
 
-.calendar .ContributionCalendar-day[data-level="3"],
-.calendar rect.ContributionCalendar-day[data-level="3"] { fill: rgba(179, 136, 255, 0.8) !important; }
+/* --- Footer Quote Section --- */
+.quote-box {
+  padding: 20px;
+  position: relative;
+}
 
-.calendar .ContributionCalendar-day[data-level="4"],
-.calendar rect.ContributionCalendar-day[data-level="4"] { fill: #b388ff !important; }
+.quote-text {
+  font-family: 'Fira Code', monospace !important;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #8b92b2; /* Muted grey-purple so it isn't too harsh */
+  letter-spacing: 0.5px;
+  line-height: 1.6;
+  font-style: normal;
+  text-transform: none !important;
+}
+
+.quote-author {
+  font-family: 'Fira Code', monospace !important;
+  margin-top: 15px;
+  color: var(--accent-purple);
+  font-weight: 500;
+  font-size: 1rem;
+}
