@@ -75,4 +75,9 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     detectRetina: true,
   });
+  // --- 3. GitHub Calendar Initialization ---
+    GitHubCalendar(".calendar", "kpandey15", {
+      responsive: true,
+      tooltips: true
+    });
 });

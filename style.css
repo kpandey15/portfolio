@@ -293,3 +293,39 @@ footer {
   .hero h1 { font-size: 2.5rem; }
   .hero h2 { font-size: 1.5rem; }
 }
+/* --- GitHub Calendar Purple Theme Overrides --- */
+.calendar {
+  border: none !important;
+  color: var(--text-main) !important;
+  font-family: 'Poppins', sans-serif !important;
+  min-height: 200px;
+}
+
+.calendar .contrib-number {
+  color: var(--accent-purple) !important;
+}
+
+.calendar .text-muted {
+  color: var(--text-muted) !important;
+}
+
+/* Hide the "Learn how we count contributions" link for a cleaner card */
+.calendar .float-left.text-gray {
+  display: none !important;
+}
+
+/* Override default green blocks to neon purple based on activity intensity */
+.calendar .ContributionCalendar-day[data-level="0"],
+.calendar rect.ContributionCalendar-day[data-level="0"] { fill: #1a1d2d !important; }
+
+.calendar .ContributionCalendar-day[data-level="1"],
+.calendar rect.ContributionCalendar-day[data-level="1"] { fill: rgba(179, 136, 255, 0.3) !important; }
+
+.calendar .ContributionCalendar-day[data-level="2"],
+.calendar rect.ContributionCalendar-day[data-level="2"] { fill: rgba(179, 136, 255, 0.6) !important; }
+
+.calendar .ContributionCalendar-day[data-level="3"],
+.calendar rect.ContributionCalendar-day[data-level="3"] { fill: rgba(179, 136, 255, 0.8) !important; }
+
+.calendar .ContributionCalendar-day[data-level="4"],
+.calendar rect.ContributionCalendar-day[data-level="4"] { fill: #b388ff !important; }
