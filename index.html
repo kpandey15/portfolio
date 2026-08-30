@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- GitHub Calendar Library -->
+    <script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kohina Pandey | DevFolio</title>
@@ -42,8 +45,10 @@
         <h2>I'm a <span id="typing-text"></span><span class="cursor">|</span></h2>
         <p>Building scalable systems and optimizing backend architectures.</p>
         <div class="social-links">
+            <!-- Added LeetCode -->
+            <a href="https://leetcode.com/u/pandeykohina/" target="_blank" title="LeetCode"><i class="fas fa-code"></i></a>
             <a href="https://github.com/kpandey15" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.linkedin.com/in/kohina-pandey15/"><i class="fab fa-linkedin"></i></a>
             <a href="mailto:pandeykohina@gmail.com"><i class="fas fa-envelope"></i></a>
         </div>
     </div>
@@ -144,30 +149,61 @@
             <i class="fab fa-github project-icon"></i>
             <h3>DronaOS</h3>
             <p>Architected a multi-tenant enterprise application, implementing robust database multi-tenancy patterns for high performance and data isolation.</p>
-            <a href="#" class="btn">View on GitHub</a>
+            <a href="https://github.com/kpandey15/DronaOS" target="_blank" class="btn">View on GitHub</a>
         </article>
 
         <article class="project-card box-panel">
             <i class="fab fa-github project-icon"></i>
             <h3>Taskly</h3>
             <p>A comprehensive task management application designed for productivity. Includes a secure backend and responsive client interface.</p>
-            <a href="#" class="btn">View on GitHub</a>
+            <a href="https://github.com/kpandey15/Taskly" target="_blank" class="btn">View on GitHub</a>
         </article>
 
         <article class="project-card box-panel">
             <i class="fab fa-github project-icon"></i>
             <h3>Chat Application</h3>
             <p>Real-time messaging architecture utilizing WebSockets for low-latency communication. Repository contains both server and client code.</p>
-            <a href="#" class="btn">View on GitHub</a>
+            <a href="https://github.com/kpandey15/ChatApplication" target="_blank" class="btn">View on GitHub</a>
         </article>
 
         <article class="project-card box-panel">
             <i class="fab fa-github project-icon"></i>
             <h3>Football Analysis</h3>
             <p>Data analysis and visualizations for football match statistics. Includes Python scripts, Jupyter notebooks, and data processing pipelines.</p>
-            <a href="#" class="btn">View on GitHub</a>
+            <a href="https://github.com/kpandey15/football-analysis" target="_blank" class="btn">View on GitHub</a>
         </article>
 
+    </div>
+</section>
+<!-- Activity Section -->
+<section id="activity" class="container">
+    <h2 class="section-title">Days I Code</h2>
+
+    <!-- LeetCode Panel -->
+    <div class="box-panel" style="padding: 30px 20px;">
+        <h3 style="text-align: center; margin-bottom: 25px; color: var(--text-main); font-weight: 600; font-size: 1.4rem;">
+            <span style="color: var(--accent-purple); font-weight: bold;">&lt;/&gt;</span> LeetCode Activity
+        </h3>
+        <div style="text-align: center; overflow-x: auto;">
+            <img src="https://leetcard.jacoblin.cool/pandeykohina?theme=dark&font=Poppins&ext=heatmap" alt="LeetCode Stats" style="max-width: 100%; border-radius: 8px;">
+        </div>
+    </div>
+    <!-- GitHub Panel -->
+    <div class="box-panel" style="padding: 30px 20px; margin-bottom: 40px;">
+        <h3 style="text-align: center; margin-bottom: 25px; color: var(--text-main); font-weight: 600; font-size: 1.4rem;">
+            <i class="fab fa-github" style="color: var(--accent-purple);"></i> GitHub Contributions
+        </h3>
+        <div class="calendar">
+            Loading GitHub data just for you...
+        </div>
+    </div>
+</section>
+
+<!-- Quote Section -->
+<section class="container" style="margin-top: 40px; margin-bottom: 40px; text-align: center;">
+    <div class="quote-box">
+        <h3 class="quote-text">"Make it work, make it right, make it fast."</h3>
+        <p class="quote-author">— Kent Beck</p>
     </div>
 </section>
 
