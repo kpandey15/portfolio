@@ -1,50 +1,78 @@
-$(document).ready(function(){
-    $(window).scroll(function(){
-        // sticky navbar on scroll script
-        if(this.scrollY > 20){
-            $('.navbar').addClass("sticky");
-        }else{
-            $('.navbar').removeClass("sticky");
-        }
-        
-        // scroll-up button show/hide script
-        if(this.scrollY > 500){
-            $('.scroll-up-btn').addClass("show");
-        }else{
-            $('.scroll-up-btn').removeClass("show");
-        }
-    });
+document.addEventListener("DOMContentLoaded", () => {
 
-    // slide-up script
-    $('.scroll-up-btn').click(function(){
-        $('html').animate({scrollTop: 0});
-        // removing smooth scroll on slide-up button click
-        $('html').css("scrollBehavior", "auto");
-    });
+  // --- 1. Typing Animation Logic ---
+  const textArray = ["Backend Developer.", "Software Engineer at Visa.", "Problem Solver."];
+  let textIndex = 0;
+  let charIndex = 0;
+  const typingElement = document.getElementById("typing-text");
 
-    $('.navbar .menu li a').click(function(){
-        // applying again smooth scroll on menu items click
-        $('html').css("scrollBehavior", "smooth");
-    });
+  function type() {
+    if (charIndex < textArray[textIndex].length) {
+      typingElement.textContent += textArray[textIndex].charAt(charIndex);
+      charIndex++;
+      setTimeout(type, 100);
+    } else {
+      setTimeout(erase, 2000);
+    }
+  }
 
-    // toggle menu/navbar script
-    $('.menu-btn').click(function(){
-        $('.navbar .menu').toggleClass("active");
-        $('.menu-btn i').toggleClass("active");
-    });
-    
-    // typing text animation script
-    var typed = new Typed(".typing", {
-        strings: ["Software Engineer;", "Backend Developer;", "Problem Solver;", "Tech Enthusiast;"],
-        typeSpeed: 100,
-        backSpeed: 60,
-        loop: true
-    });
+  function erase() {
+    if (charIndex > 0) {
+      typingElement.textContent = textArray[textIndex].substring(0, charIndex - 1);
+      charIndex--;
+      setTimeout(erase, 50);
+    } else {
+      textIndex++;
+      if (textIndex >= textArray.length) textIndex = 0;
+      setTimeout(type, 500);
+    }
+  }
 
-    var typed = new Typed(".typing-2", {
-        strings: ["Software Engineer;", "Backend Developer;", "Problem Solver;", "Tech Enthusiast;"],
-        typeSpeed: 100,
-        backSpeed: 60,
-        loop: true
-    });
+  // Start the typing animation
+  type();
+
+
+  // --- 2. tsParticles (Network Background) Initialization ---
+  tsParticles.load("tsparticles", {
+    fpsLimit: 60,
+    particles: {
+      color: {
+        value: "#b388ff", /* Matches your purple accent */
+      },
+      links: {
+        color: "#8b92b2", /* Muted lines */
+        distance: 150,
+        enable: true,
+        opacity: 0.2,
+        width: 1,
+      },
+      move: {
+        enable: true,
+        speed: 1.5, /* Slow, elegant movement */
+        direction: "none",
+        random: false,
+        straight: false,
+        outModes: {
+          default: "bounce",
+        },
+      },
+      number: {
+        density: {
+          enable: true,
+          area: 800,
+        },
+        value: 50, /* Adjust for more/less dots */
+      },
+      opacity: {
+        value: 0.5,
+      },
+      shape: {
+        type: "circle",
+      },
+      size: {
+        value: { min: 1, max: 3 },
+      },
+    },
+    detectRetina: true,
+  });
 });
